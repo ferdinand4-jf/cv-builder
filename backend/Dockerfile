@@ -8,7 +8,7 @@ RUN npm ci --only=production --legacy-peer-deps
 
 # Copy Prisma files
 COPY prisma ./prisma
-RUN npx prisma generate
+RUN npx prisma@6 generate
 
 # Copy source code
 COPY . .
