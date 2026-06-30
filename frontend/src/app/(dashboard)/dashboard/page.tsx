@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { useAuthStore } from '../../../store/authStore'
-import { useCVStore } from '../../../store/cvStore'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-import { CVList } from '../../../components/cv/CVList'
+import { useAuthStore } from '@/store/authStore'
+import { useCVStore } from '@/store/cvStore'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { CVList } from '@/components/cv/CVList'
 import { Plus, FileText, Layout, LogOut, User, Settings, Loader2 } from 'lucide-react'
 import {
   DropdownMenu,
@@ -16,8 +16,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../../../components/ui/dropdown-menu'
-import { Avatar, AvatarFallback } from '../../../components/ui/avatar'
+} from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import toast from 'react-hot-toast'
 
 export default function DashboardPage() {

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { CV } from '../../types'
+import { CV } from '@/types'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
 import {
@@ -15,8 +15,8 @@ import {
   Layout,
   FilePlus
 } from 'lucide-react'
-import { formatDate } from '../../lib/utils'
-import { useCVStore } from '../../store/cvStore'
+import { formatDate } from '@/lib/utils'
+import { useCVStore } from '@/store/cvStore'
 import toast from 'react-hot-toast'
 
 interface CVListProps {

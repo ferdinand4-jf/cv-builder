@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuthStore } from '../../../store/authStore'
-import { Statistics } from '../../../components/admin/Statistics'
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
+import { useAuthStore } from '@/store/authStore'
+import { Statistics } from '@/components/admin/Statistics'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Users, FileText, Layout, TrendingUp } from 'lucide-react'
-import api from '../../../lib/api'
-import { Statistics as StatisticsType } from '../../../types'
+import api from '@/lib/api'
+import { Statistics as StatisticsType } from '@/types'
 
 export default function AdminDashboardPage() {
   const router = useRouter()

@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuthStore } from '../../../../store/authStore'
-import { TemplateManagement } from '../../../../components/admin/TemplateManagement'
+import { useAuthStore } from '@/store/authStore'
+import { TemplateManagement } from '@/components/admin/TemplateManagement'
 
 export default function AdminTemplatesPage() {
   const router = useRouter()

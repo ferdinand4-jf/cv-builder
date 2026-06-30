@@ -3,8 +3,8 @@
 
 import { Button } from '../ui/button'
 import { Download, Printer, FileText } from 'lucide-react'
-import { CV } from '../../types'
-import { useCVStore } from '../../store/cvStore'
+import { CV } from '@/types'
+import { useCVStore } from '@/store/cvStore'
 import { TemplateRenderer } from './templates/TemplateRenderer'
 import toast from 'react-hot-toast'
 

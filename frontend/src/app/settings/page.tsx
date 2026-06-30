@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuthStore } from '../../store/authStore'
-import { Button } from '../../components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../src/components/ui/card'
-import { Input } from '../../components/ui/input'
-import { Label } from '../../components/ui/label'
-import { Switch } from '../../../src/components/ui/switch'
+import { useAuthStore } from '@/store/authStore'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Switch } from '@/components/ui/switch'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../../src/components/ui/alert-dialog'
 import { Bell, Moon, Eye, EyeOff, Shield, Trash2, Loader2, CheckCircle } from 'lucide-react'
 import toast from 'react-hot-toast'
-import api from '../../lib/api'
+import api from '@/lib/api'
 
 export default function SettingsPage() {
   const router = useRouter()
