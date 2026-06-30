@@ -7,6 +7,10 @@ COPY package*.json ./
 RUN npm ci --legacy-peer-deps
 
 COPY . .
+
+# Sécurité : Crée le dossier public s'il n'existe pas pour éviter le crash au moment du COPY final
+RUN mkdir -p public
+
 RUN sed -i '/ignoreDeprecations/d' tsconfig.json && npm run build
 
 FROM node:24-alpine
