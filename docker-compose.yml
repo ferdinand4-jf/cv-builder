@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: cv-builder-postgres
+    environment:
+      POSTGRES_USER: cvuser
+      POSTGRES_PASSWORD: cvpassword
+      POSTGRES_DB: cvbuilder
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - cv-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cvuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: cv-builder-backend
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://cvuser:cvpassword@postgres:5432/cvbuilder
+      JWT_SECRET: your_jwt_secret_key_here
+      JWT_REFRESH_SECRET: your_refresh_secret_key_here
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: 587
+      SMTP_USER: your_email@gmail.com
+      SMTP_PASS: your_app_password
+      FRONTEND_URL: http://localhost
+      BACKEND_URL: http://backend:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cv-network
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/logs:/app/logs
+
+  frontend:
+    build: ./frontend
+    container_name: cv-builder-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:5000/api
+      NEXT_PUBLIC_WEBSITE_URL: http://localhost
+    depends_on:
+      - backend
+    networks:
+      - cv-network
+
+  nginx:
+    build: ./nginx
+    container_name: cv-builder-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - cv-network
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+networks:
+  cv-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

@@ -1,0 +1,1 @@
+{"version":3,"file":"templateRoutes.js","sourceRoot":"","sources":["../../src/routes/templateRoutes.ts"],"names":[],"mappings":";;AAAA,qCAAgC;AAChC,0EAI0C;AAE1C,MAAM,MAAM,GAAG,IAAA,gBAAM,GAAE,CAAA;AAEvB,MAAM,CAAC,GAAG,CAAC,GAAG,EAAE,iCAAY,CAAC,CAAA;AAC7B,MAAM,CAAC,GAAG,CAAC,qBAAqB,EAAE,0CAAqB,CAAC,CAAA;AACxD,MAAM,CAAC,GAAG,CAAC,MAAM,EAAE,gCAAW,CAAC,CAAA;AAE/B,kBAAe,MAAM,CAAA"}

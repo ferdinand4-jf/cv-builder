@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  firstName     String
+  lastName      String
+  role          Role      @default(USER)
+  isActive      Boolean   @default(true)
+  lastLogin     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  cvs           CV[]
+  refreshTokens RefreshToken[]
+  passwordResets PasswordReset[]
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model PasswordReset {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  used      Boolean  @default(false)
+}
+
+model CV {
+  id            String    @id @default(uuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  templateId    String
+  template      Template  @relation(fields: [templateId], references: [id])
+  title         String
+  personalInfo  Json
+  experience    Json[]
+  education     Json[]
+  skills        Json[]
+  languages     Json[]
+  certifications Json[]
+  projects      Json[]
+  customSections Json[]
+  styling       Json
+  isPublic      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Template {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  description String
+  category    TemplateCategory
+  thumbnail   String
+  styles      Json
+  isActive    Boolean   @default(true)
+  isPremium   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  cvs         CV[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TemplateCategory {
+  MODERN
+  CLASSIC
+  ATS_FRIENDLY
+  CREATIVE
+}

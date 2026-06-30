@@ -1,0 +1,65 @@
+import { Request, Response } from 'express'
+import { prisma } from '../server'
+
+export const getTemplates = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { includeInactive } = req.query
+
+    const where = {
+      isActive: includeInactive === 'true' ? undefined : true,
+    }
+
+    const templates = await prisma.template.findMany({
+      where,
+      orderBy: {
+        name: 'asc',
+      },
+    })
+
+    res.json(templates)
+  } catch (error) {
+    console.error('Get templates error:', error)
+    res.status(500).json({ message: 'Failed to get templates' })
+  }
+}
+
+export const getTemplate = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params
+
+    const template = await prisma.template.findUnique({
+      where: { id },
+    })
+
+    if (!template) {
+      res.status(404).json({ message: 'Template not found' })
+      return
+    }
+
+    res.json(template)
+  } catch (error) {
+    console.error('Get template error:', error)
+    res.status(500).json({ message: 'Failed to get template' })
+  }
+}
+
+export const getTemplateByCategory = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { category } = req.params
+
+    const templates = await prisma.template.findMany({
+      where: {
+        category: category as any,
+        isActive: true,
+      },
+      orderBy: {
+        name: 'asc',
+      },
+    })
+
+    res.json(templates)
+  } catch (error) {
+    console.error('Get templates by category error:', error)
+    res.status(500).json({ message: 'Failed to get templates' })
+  }
+}
