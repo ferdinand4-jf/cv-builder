@@ -26,12 +26,12 @@ services:
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://cvuser:cvpassword@postgres:5432/cvbuilder
-      JWT_SECRET: your_jwt_secret_key_here
-      JWT_REFRESH_SECRET: your_refresh_secret_key_here
+      JWT_SECRET: a2f121546b9de61bfdf630398c9523578fdf4a073b47cb2251b33cf1f3ff4634
+      JWT_REFRESH_SECRET: ec448dfdcd55252fcd3072ea8d7f77ea55f9c53590369bd03b950f2d80a26158
       SMTP_HOST: smtp.gmail.com
       SMTP_PORT: 587
-      SMTP_USER: your_email@gmail.com
-      SMTP_PASS: your_app_password
+      SMTP_USER: jnahandrisoaniaina@gmail.com
+      SMTP_PASS: hyar tnxk yvoy roox
       FRONTEND_URL: http://localhost
       BACKEND_URL: http://backend:5000
     ports:

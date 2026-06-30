@@ -3,7 +3,8 @@ FROM node:24-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+# Correction ici pour ignorer le conflit de peer dependencies
+RUN npm ci --legacy-peer-deps
 
 COPY . .
 RUN npm run build
