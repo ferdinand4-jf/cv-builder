@@ -10,7 +10,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # 3. Nettoyer, générer le client Prisma et compiler
-RUN npm run clean && npx prisma generate && npx tsc
+RUN npm run clean && npx prisma generate && sed -i '/ignoreDeprecations/d' tsconfig.json && npx tsc
 
 # 4. Préparer les répertoires nécessaires
 RUN mkdir -p uploads && chmod 777 uploads
