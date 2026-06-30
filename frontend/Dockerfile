@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm ci --legacy-peer-deps
 
 COPY . .
-RUN npm run build
+RUN sed -i '/ignoreDeprecations/d' tsconfig.json && npm run build
 
 FROM node:24-alpine
 
