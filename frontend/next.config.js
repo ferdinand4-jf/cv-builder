@@ -4,7 +4,7 @@ const nextConfig = {
     domains: ['localhost', 'backend'],
   },
   experimental: {
-    serverActions: true,
+    
   },
   async rewrites() {
     return [
