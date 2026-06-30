@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuthStore } from '../../../store/authStore'
-import { UserManagement } from '../../../components/admin/UserManagement'
+import { useAuthStore } from '@/store/authStore'
+import { UserManagement } from '@/components/admin/UserManagement'
 
 export default function AdminUsersPage() {
   const router = useRouter()
