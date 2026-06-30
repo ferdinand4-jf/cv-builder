@@ -1,4 +1,4 @@
-import { CV } from '../../../types'
+import { CV } from '@/types'
 
 interface TemplateProps {
   cv: CV
@@ -64,7 +64,7 @@ export function ClassicTemplate({ cv }: TemplateProps) {
                   </span>
                 </div>
                 <p className="text-sm text-ink-soft mt-1 leading-relaxed">{exp.description}</p>
-                {exp.achievements?.length > 0 && (
+                {exp.achievements && exp.achievements.length > 0 && (
                   <ul className="list-disc list-inside text-sm mt-1 text-ink-soft">
                     {exp.achievements.map((a, j) => <li key={j}>{a}</li>)}
                   </ul>
