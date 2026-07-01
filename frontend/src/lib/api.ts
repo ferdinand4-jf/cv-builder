@@ -1,11 +1,14 @@
 import axios from 'axios'
 import { useAuthStore } from '../store/authStore'
 
+const DEFAULT_API_URL = 'http://localhost/api'
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true // Permet de faire passer les cookies de session si nécessaire
 })
 
 // Request interceptor
@@ -37,9 +40,13 @@ api.interceptors.response.use(
           throw new Error('No refresh token')
         }
 
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_URL
+        
+        // CORRIGÉ : Utilisation de la variable sécurisée ou de sa valeur par défaut
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
-          { refreshToken }
+          `${baseUrl}/auth/refresh`,
+          { refreshToken },
+          { withCredentials: true }
         )
 
         const { token, refreshToken: newRefreshToken } = response.data
