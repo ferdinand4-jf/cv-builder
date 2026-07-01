@@ -31,9 +31,7 @@ services:
       SMTP_USER: jnahandrisoaniaina@gmail.com
       SMTP_PASS: hyar tnxk yvoy roox
       FRONTEND_URL: http://localhost
-      BACKEND_URL: http://backend:5000
-    ports:
-      - "5000:5000"
+      BACKEND_URL: http://localhost/api
     depends_on:
       postgres:
         condition: service_healthy
@@ -47,7 +45,7 @@ services:
     build: ./frontend
     container_name: cv-builder-frontend
     environment:
-      NEXT_PUBLIC_API_URL: http://backend:5000/api
+      NEXT_PUBLIC_API_URL: http://localhost/api
       NEXT_PUBLIC_WEBSITE_URL: http://localhost
     depends_on:
       - backend

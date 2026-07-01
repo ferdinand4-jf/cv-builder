@@ -27,14 +27,18 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again later.',
 })
 
-// Middleware
-app.use(helmet())
+// Middleware (Désactivation du CSP interne de Helmet + Origine CORS alignée sur Nginx)
+app.use(helmet({
+  contentSecurityPolicy: false,
+}))
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3001',
+  origin: process.env.FRONTEND_URL || 'http://localhost',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }))
+
 app.use(express.json({ limit: '50mb' }))
 app.use(express.urlencoded({ extended: true, limit: '50mb' }))
 
