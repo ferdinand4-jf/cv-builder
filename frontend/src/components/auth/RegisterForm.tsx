@@ -11,7 +11,7 @@ import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
-import api from '../../lib/api'
+import api from '@/lib/api'
 
 const registerSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),

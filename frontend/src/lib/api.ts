@@ -4,11 +4,12 @@ import { useAuthStore } from '../store/authStore'
 const DEFAULT_API_URL = 'http://localhost/api'
 
 const api = axios.create({
+  // Utilise le port 80 global géré par Nginx
   baseURL: process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true // Permet de faire passer les cookies de session si nécessaire
+  withCredentials: true 
 })
 
 // Request interceptor
@@ -42,7 +43,6 @@ api.interceptors.response.use(
 
         const baseUrl = process.env.NEXT_PUBLIC_API_URL || DEFAULT_API_URL
         
-        // CORRIGÉ : Utilisation de la variable sécurisée ou de sa valeur par défaut
         const response = await axios.post(
           `${baseUrl}/auth/refresh`,
           { refreshToken },
